@@ -36,14 +36,14 @@ resource "null_resource" "invalid_zone" {
 }
 
 resource "google_dns_managed_zone" "peering" {
-  count                     = "${var.zone_type == "peering" ? 1 : 0}"
-  provider                  = "google-beta"
-  project                   = "${var.project_id}"
-  name                      = "${var.name}"
-  dns_name                  = "${var.domain}"
-  description               = "Terraform-managed zone."
-  visibility                = "private"
-  private_visibility_config = ["${var.private_visibility_config}"]
+  count       = "${var.zone_type == "peering" ? 1 : 0}"
+  provider    = "google-beta"
+  project     = "${var.project_id}"
+  name        = "${var.name}"
+  dns_name    = "${var.domain}"
+  description = "Terraform-managed zone."
+  visibility  = "private"
+  # private_visibility_config = ["${var.private_visibility_config}"]
 
   peering_config {
     target_network {
@@ -53,14 +53,14 @@ resource "google_dns_managed_zone" "peering" {
 }
 
 resource "google_dns_managed_zone" "forwarding" {
-  count                     = "${var.zone_type == "forwarding" ? 1 : 0}"
-  provider                  = "google-beta"
-  project                   = "${var.project_id}"
-  name                      = "${var.name}"
-  dns_name                  = "${var.domain}"
-  description               = "Terraform-managed zone."
-  visibility                = "private"
-  private_visibility_config = ["${var.private_visibility_config}"]
+  count       = "${var.zone_type == "forwarding" ? 1 : 0}"
+  provider    = "google-beta"
+  project     = "${var.project_id}"
+  name        = "${var.name}"
+  dns_name    = "${var.domain}"
+  description = "Terraform-managed zone."
+  visibility  = "private"
+  # private_visibility_config = ["${var.private_visibility_config}"]
 
   forwarding_config {
     target_name_servers = ["${var.target_name_servers}"]
@@ -68,13 +68,13 @@ resource "google_dns_managed_zone" "forwarding" {
 }
 
 resource "google_dns_managed_zone" "private" {
-  count                     = "${var.zone_type == "private" ? 1 : 0}"
-  project                   = "${var.project_id}"
-  name                      = "${var.name}"
-  dns_name                  = "${var.domain}"
-  description               = "Terraform-managed zone."
-  visibility                = "private"
-  private_visibility_config = ["${var.private_visibility_config}"]
+  count       = "${var.zone_type == "private" ? 1 : 0}"
+  project     = "${var.project_id}"
+  name        = "${var.name}"
+  dns_name    = "${var.domain}"
+  description = "Terraform-managed zone."
+  visibility  = "private"
+  # private_visibility_config = ["${var.private_visibility_config}"]
 }
 
 resource "google_dns_managed_zone" "public" {
