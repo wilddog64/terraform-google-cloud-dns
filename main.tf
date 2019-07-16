@@ -30,7 +30,7 @@ locals {
 
 resource "null_resource" "invalid_zone" {
   count                      = "${local.check_zone_type != 3 ? 1 : 0}"
-  "ERROR: invalid zone type" = true
+  ERROR: invalid zone type = true
 }
 
 resource "google_dns_managed_zone" "peering" {
